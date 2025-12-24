@@ -88,6 +88,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout this repo (for extra assets)
+        uses: actions/checkout@v4
+      
       - name: Download firmware artifacts
         uses: actions/download-artifact@v4
         with:
@@ -121,6 +124,10 @@ jobs:
             
             ## Installation
             Download the `.bin` file and flash using the web installer or esptool.
+            
+            ## Additional Files
+            - `tinyuf2-adafruit_matrixportal_s3-0.35.0-combined.bin` - TinyUF2 bootloader
+            - `partitions_8MB_tinyuf2.bin` - Partition table for TinyUF2
           files: |
             *.bin
             *.bin.gz
