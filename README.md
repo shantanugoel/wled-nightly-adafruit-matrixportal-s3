@@ -19,7 +19,7 @@ You can manually trigger a build from the [Actions](../../actions) tab.
 
 ## Configuration
 
-The build uses [platformio_override.ini](platformio_override.ini) which configures:
+The build uses upstream WLED's `platformio_override.sample.ini` which includes the MatrixPortal configuration with:
 - HUB75 Matrix Panel support
 - Audio reactive usermod
 - PSRAM enabled
