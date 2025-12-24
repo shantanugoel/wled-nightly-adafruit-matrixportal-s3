@@ -7,6 +7,9 @@ on:
   # Allow manual triggering from the web interface
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build MatrixPortal ESP32-S3
