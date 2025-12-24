@@ -15,11 +15,6 @@ jobs:
     name: Build MatrixPortal ESP32-S3
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout this repo (for override config)
-        uses: actions/checkout@v4
-        with:
-          path: config
-      
       - name: Clone upstream WLED
         uses: actions/checkout@v4
         with:
@@ -30,8 +25,8 @@ jobs:
         id: upstream
         run: echo "sha=$(git -C WLED rev-parse HEAD)" >> $GITHUB_OUTPUT
       
-      - name: Copy override config to WLED
-        run: cp config/platformio_override.ini WLED/
+      - name: Activate upstream override config
+        run: cp WLED/platformio_override.sample.ini WLED/platformio_override.ini
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -54,7 +49,7 @@ jobs:
             ~/.platformio/.cache
             ~/.buildcache
             WLED/build_output
-          key: pio-${{ runner.os }}-matrixportal-${{ hashFiles('WLED/platformio.ini', 'config/platformio_override.ini') }}
+          key: pio-${{ runner.os }}-matrixportal-${{ hashFiles('WLED/platformio.ini') }}
           restore-keys: pio-${{ runner.os }}-matrixportal-
       
       - name: Set up Python
